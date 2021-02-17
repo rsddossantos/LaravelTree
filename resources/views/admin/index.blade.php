@@ -1,6 +1,6 @@
-@extends('admin.template');
+@extends('admin.template')
 
-@section('title', 'B7Bio - Home');
+@section('title', 'B7Bio - Home')
 
 @section('content')
 
