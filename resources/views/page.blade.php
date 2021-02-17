@@ -16,8 +16,9 @@
             background: {{ $bg }};
         }
         .profileImage img {
-            width: auto;
+            width: 100px;
             height: 100px;
+            border-radius: 50px;
         }
         .profileTitle {
             font-size: 17px;
@@ -40,7 +41,10 @@
             text-decoration: none;
             font-size: 18px;
             font-weight: bold;
-            margin-bottom: 20px
+            margin-bottom: 20px;
+        }
+        .linkArea a:hover {
+            box-shadow:inset 0px 0px 0px 2px #111;
         }
         .linkArea a.linksquare {
             border-radius: 0px;
@@ -58,6 +62,9 @@
             color: {{ $font_color }};
             text-decoration: none;
         }
+        .banner a:hover {
+            color: #bb0000;
+        }
     </style>
 </head>
 <body>
@@ -74,7 +81,7 @@
         @endforeach
     </div>
     <div class="banner">
-        by <a href="https://b7web.com.br" target="_blank">B7Web</a>
+        <a href="https://b7web.com.br" target="_blank">Feito com ❤ por B7Web</a>
     </div>
     @if(!empty($fb_pixel))
         <!-- Facebook Pixel Code -->
