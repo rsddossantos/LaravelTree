@@ -81,7 +81,7 @@
         @endforeach
     </div>
     <div class="banner">
-        <a href="https://b7web.com.br" target="_blank">Feito com ❤ por B7Web</a>
+        <a href="https://www.facebook.com/rodrigo.diassantos.9/" target="_blank">Feito com ❤ por KR Systems</a>
     </div>
     @if(!empty($fb_pixel))
         <!-- Facebook Pixel Code -->

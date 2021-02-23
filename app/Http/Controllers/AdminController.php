@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Page;
 
 class AdminController extends Controller
 {
@@ -69,7 +70,42 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin/index');
+        $user = Auth::user();
+        $pages = Page::where('id_user', $user->id)->get();
+
+        return view('admin/index', [
+            'pages' => $pages
+        ]);
+    }
+
+    public function pageLinks($slug)
+    {
+        $user = Auth::user();
+        $page = Page::where('slug', $slug)
+            ->where('id_user', $user->id)
+            ->first();
+        if($page) {
+            return view('admin/page_links', [
+                'menu' => 'links',
+                'page' => $page
+            ]);
+        } else {
+            return redirect('/admin');
+        }
+    }
+
+    public function pageDesign($slug)
+    {
+        return view('admin/page_design', [
+            'menu' => 'design'
+        ]);
+    }
+
+    public function pageStats($slug)
+    {
+        return view('admin/page_stats', [
+            'menu' => 'stats'
+        ]);
     }
 
 
