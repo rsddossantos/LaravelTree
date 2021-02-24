@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Page;
+use App\Models\Link;
 
 class AdminController extends Controller
 {
@@ -85,13 +86,36 @@ class AdminController extends Controller
             ->where('id_user', $user->id)
             ->first();
         if($page) {
+            $links = Link::where('id_page', $page->id)
+                ->orderBy('order', 'ASC')
+                ->get();
+
             return view('admin/page_links', [
                 'menu' => 'links',
-                'page' => $page
+                'page' => $page,
+                'links' => $links
+
             ]);
         } else {
             return redirect('/admin');
         }
+    }
+
+    public function linkOrderUpdate($linkid, $pos)
+    {
+        // Validando se os links pertencem ao usuário logado
+        $user = Auth::user();
+        $link = Link::find($linkid);
+        $mypages = [];
+        $myPagesQuery = Page::where('id_user', $user->id)->get();
+        foreach($myPagesQuery as $pageItem) {
+            $myPages[] = $pageItem->id;
+        }
+        if(in_array($link->id_page, $myPages)) {
+
+        }
+
+        return [];
     }
 
     public function pageDesign($slug)
