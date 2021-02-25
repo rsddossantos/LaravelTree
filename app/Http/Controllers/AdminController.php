@@ -112,7 +112,37 @@ class AdminController extends Controller
             $myPages[] = $pageItem->id;
         }
         if(in_array($link->id_page, $myPages)) {
-
+            if($link->order > $pos) {
+                //subiu item, jogando os próximos para baixo
+                $afterLinks = Link::where('id_page', $link->id_page)
+                    ->where('order', '>=', $pos)
+                    ->get();
+                foreach($afterLinks as $afterLink) {
+                    $afterLink->order++;
+                    $afterLink->save();
+                }
+            } elseif($link->order < $pos) {
+                // desceu item, jogando os anteriores pra cima
+                $beforeLinks = Link::where('id_page', $link->id_page)
+                    ->where('order', '<=', $pos)
+                    ->get();
+                foreach($beforeLinks as $beforeLink) {
+                    $beforeLink->order--;
+                    $beforeLink->save();
+                }
+            }
+            // Posicionando o item selecionado
+            $link->order = $pos;
+            $link->save();
+            // Corrigindo as posições, será usada a key de um array para acertar a numeração de zero em diante.
+            // Ex: teremos casos que a ordem aqui estará -1,0,1 e após ficará 0,1,2 como deve ser.
+            $allLinks = Link::where('id_page', $link->id_page)
+                ->orderBy('order', 'ASC')
+                ->get();
+            foreach($allLinks as $linkKey => $linkItem) {
+                $linkItem->order = $linkKey;
+                $linkItem->save();
+            }
         }
 
         return [];
