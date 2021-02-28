@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+
 use App\Models\User;
 use App\Models\Page;
 use App\Models\Link;
@@ -146,6 +148,157 @@ class AdminController extends Controller
         }
 
         return [];
+    }
+
+    public function newLink($slug) {
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
+        if($page) {
+            return view('admin/page_editlink', [
+                'menu' => 'links',
+                'page' => $page
+            ]);
+        } else {
+            return redirect('/admin');
+        }
+    }
+
+    public function newLinkAction($slug, Request $request) {
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
+        if($page) {
+            $fields = $request->validate([
+                'status' => ['required', 'boolean'],
+                'title' => ['required', 'min:2'],
+                'href' => ['required', 'url'],
+                // inicio com # 0 a 9 e A até F com 3 ou 6 dígitos
+                'op_bg_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                'op_text_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                'op_border_type' => ['required', Rule::in(['square', 'rounded'])]
+            ]);
+            $totalLinks = Link::where('id_page', $page->id)->count();
+
+            $newLink = new Link();
+            $newLink->id_page = $page->id;
+            $newLink->status = $fields['status'];
+            $newLink->order = $totalLinks;
+            $newLink->title = $fields['title'];
+            $newLink->href = $fields['href'];
+            $newLink->op_bg_color = $fields['op_bg_color'];
+            $newLink->op_text_color = $fields['op_text_color'];
+            $newLink->op_border_type = $fields['op_border_type'];
+            $newLink->save();
+
+            // Corrigindo as posições
+            $allLinks = Link::where('id_page', $page->id)
+                ->where('status', 1)
+                ->orderBy('order', 'ASC')
+                ->get();
+            foreach($allLinks as $linkKey => $linkItem) {
+                $linkItem->order = $linkKey;
+                $linkItem->save();
+            }
+
+            return redirect('/admin/'.$page->slug.'/links');
+
+        } else {
+            return redirect('/admin');
+        }
+    }
+
+    public function editLink($slug, $linkid)
+    {
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
+        if($page) {
+            $link = Link::where('id_page', $page->id)
+                ->where('id', $linkid)
+                ->first();
+            if($link) {
+                return view('admin/page_editlink', [
+                    'menu' => 'links',
+                    'page' => $page,
+                    'link' => $link
+                ]);
+            }
+        }
+        return redirect('/admin');
+    }
+
+    public function editLinkAction($slug, $linkid, Request $request)
+    {
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
+        if($page) {
+            $link = Link::where('id_page', $page->id)
+                ->where('id', $linkid)
+                ->first();
+            if($link) {
+                $fields = $request->validate([
+                    'status' => ['required', 'boolean'],
+                    'title' => ['required', 'min:2'],
+                    'href' => ['required', 'url'],
+                    // inicio com # 0 a 9 e A até F com 3 ou 6 dígitos
+                    'op_bg_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                    'op_text_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                    'op_border_type' => ['required', Rule::in(['square', 'rounded'])]
+                ]);
+                $link->status = $fields['status'];
+                $link->title = $fields['title'];
+                $link->href = $fields['href'];
+                $link->op_bg_color = $fields['op_bg_color'];
+                $link->op_text_color = $fields['op_text_color'];
+                $link->op_border_type = $fields['op_border_type'];
+                $link->save();
+
+                // Corrigindo as posições
+                $allLinks = Link::where('id_page', $page->id)
+                    ->where('status', 1)
+                    ->orderBy('order', 'ASC')
+                    ->get();
+                foreach($allLinks as $linkKey => $linkItem) {
+                    $linkItem->order = $linkKey;
+                    $linkItem->save();
+                }
+
+                return redirect('/admin/'.$page->slug.'/links');
+            }
+        }
+        return redirect('/admin');
+    }
+
+    public function delLink($slug, $linkid)
+    {
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
+        if($page) {
+            $link = Link::where('id_page', $page->id)
+                ->where('id', $linkid)
+                ->first();
+            if($link) {
+                $link->delete();
+                //Corrigindo as posições
+                $allLinks = Link::where('id_page', $page->id)
+                    ->orderBy('order', 'ASC')
+                    ->get();
+                foreach($allLinks as $linkKey => $linkItem) {
+                    $linkItem->order = $linkKey;
+                    $linkItem->save();
+                }
+                return redirect('/admin/'.$page->slug.'/links');
+            }
+        }
+        return redirect('/admin');
     }
 
     public function pageDesign($slug)
