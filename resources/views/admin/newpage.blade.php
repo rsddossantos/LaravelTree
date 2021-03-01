@@ -5,5 +5,6 @@
 @section('content')
     <header>
         <h2>Nova página</h2>
+
     </header>
 @endsection
