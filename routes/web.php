@@ -34,14 +34,14 @@ Route::prefix('/admin')->group(function(){
     Route::get('/{slug}/stats', [AdminController::class, 'pageStats']);
 
     Route::get('/linkorder/{linkid}/{pos}', [AdminController::class, 'linkOrderUpdate']);
-
     Route::get('/{slug}/newlink', [AdminController::class, 'newLink']);
     Route::post('/{slug}/newlink', [AdminController::class, 'newLinkAction']);
-
     Route::get('/{slug}/editlink/{linkid}', [AdminController::class, 'editLink']);
     Route::post('/{slug}/editlink/{linkid}', [AdminController::class, 'editLinkAction']);
-
     Route::get('/{slug}/dellink/{linkid}', [AdminController::class, 'delLink']);
+
+    Route::get('/newpage', [AdminController::class, 'newPage']);
+    Route::post('/{slug}/design', [AdminController::class, 'editDesignAction']);
 });
 
 Route::get('/{slug}', [PageController::class, 'index']);

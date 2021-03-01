@@ -28,6 +28,9 @@ nav {
     min-height: 100vh;
     margin-left: 60px;
 }
+.menu {
+    margin-bottom: 10px;
+}
 a {
     color: #000;
     text-decoration: none;

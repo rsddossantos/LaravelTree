@@ -81,6 +81,17 @@ class AdminController extends Controller
         ]);
     }
 
+    public function newPage()
+    {
+        $user = Auth::user();
+        $pages = Page::where('id_user', $user->id)->get();
+
+        return view('admin/newpage', [
+            'user' => $user,
+            'pages' => $pages
+        ]);
+    }
+
     public function pageLinks($slug)
     {
         $user = Auth::user();
@@ -303,9 +314,49 @@ class AdminController extends Controller
 
     public function pageDesign($slug)
     {
-        return view('admin/page_design', [
-            'menu' => 'design'
-        ]);
+        $user = Auth::user();
+        $page = Page::where('slug', $slug)
+            ->where('id_user', $user->id)
+            ->first();
+        if($page) {
+            $page->op_bg_value = explode(",", $page->op_bg_value);
+            return view('admin/page_design', [
+                'menu' => 'design',
+                'page' => $page
+            ]);
+        } else {
+            return redirect('/admin');
+        }
+    }
+
+    public function editDesignAction($slug, Request $request)
+    {
+        $user = Auth::user();
+        $page = Page::where('slug', $slug)
+            ->where('id_user', $user->id)
+            ->first();
+        if($page) {
+            $fields = $request->validate([
+                'op_title' => ['required', 'min:2'],
+                'op_description' => ['required', 'min:10'],
+                'slug' => ['required', 'min:2'],
+                'op_profile_image' => ['required', 'min:2'],
+                'op_bg_value1' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                'op_bg_value2' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                'op_font_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i']
+            ]);
+            $page->op_title = $fields['op_title'];
+            $page->op_description = $fields['op_description'];
+            $page->slug = $fields['slug'];
+            $page->op_profile_image = $fields['op_profile_image'];
+            $page->op_bg_value = $fields['op_bg_value1'].','.$fields['op_bg_value2'];
+            $page->op_font_color = $fields['op_font_color'];
+            $page->save();
+
+            return redirect('/admin/'.$page->slug.'/design');
+        } else {
+            return redirect('/admin');
+        }
     }
 
     public function pageStats($slug)
