@@ -92,6 +92,34 @@ class AdminController extends Controller
         ]);
     }
 
+    public function newPageAction(Request $request)
+    {
+        $user = Auth::user();
+        $page = new Page();
+        $pages = Page::where('id_user', $user->id)->get();
+
+        $fields = $request->validate([
+            'op_title' => ['required', 'min:2'],
+            'op_description' => ['required', 'min:10'],
+            'slug' => ['required', 'min:2', 'unique:pages'],
+            'op_bg_value1' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+            'op_bg_value2' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+            'op_font_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i']
+        ]);
+        $page->id_user = $user->id;
+        $page->op_bg_type = 'color';
+        $page->op_title = $fields['op_title'];
+        $page->op_description = $fields['op_description'];
+        $page->slug = $fields['slug'];
+        $page->op_profile_image = 'default.png';
+        $page->op_bg_value = $fields['op_bg_value1'].','.$fields['op_bg_value2'];
+        $page->op_font_color = $fields['op_font_color'];
+        $page->save();
+
+        return redirect('/admin/'.$page->slug.'/design');
+
+    }
+
     public function pageLinks($slug)
     {
         $user = Auth::user();

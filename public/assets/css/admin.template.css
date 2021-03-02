@@ -162,6 +162,10 @@ form input[type=submit] {
     color: #FFF;
     cursor: pointer;
 }
+input[type="file"] {
+    padding-top: 8px;
+    background-color: #FFFFFF;
+}
 h3 {
     margin-left: 20px;
 }

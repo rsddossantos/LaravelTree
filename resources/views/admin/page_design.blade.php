@@ -14,8 +14,12 @@
         </div>
     @endif
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         @csrf
+        <label>
+            Mudar foto perfil:<br/>
+            <input type="file" name="op_profile_image" />
+        </label>
         <label>
             Título:<br/>
             <input type="text" name="op_title" value="{{$page->op_title ?? ''}}" />
@@ -29,8 +33,8 @@
             <input type="text" name="slug" value="{{$page->slug ?? ''}}" />
         </label>
         <label>
-            imagem:<br/>
-            <input type="text" name="op_profile_image" value="{{$page->op_profile_image ?? 'default.png'}}" />
+            Arquivo da imagem:<br/>
+            <input type="text" name="op_profile_image" value="{{$page->op_profile_image ?? 'default.png'}}" disabled />
         </label>
         <label>
             Cor do fundo 1:<br/>
@@ -48,5 +52,8 @@
             <input type="submit" value="Salvar" />
         </label>
     </form>
-
+    <script type="text/javascript">
+        // Aplicar um onchange no type=file. Quando selecionar o arquivo, o nome deverá aparecer no campo Arquivo da imagem.
+        //document.getElementById('file').value.split("\\").pop()
+    </script>
 @endsection
