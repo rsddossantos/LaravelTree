@@ -42,6 +42,7 @@ Route::prefix('/admin')->group(function(){
 
     Route::get('/newpage', [AdminController::class, 'newPage']);
     Route::post('/newpage', [AdminController::class, 'newPageAction']);
+    Route::get('/delPage/{idPage}', [AdminController::class, 'delPage']);
     Route::post('/{slug}/design', [AdminController::class, 'editDesignAction']);
 });
 

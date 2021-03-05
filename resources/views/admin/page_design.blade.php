@@ -18,7 +18,7 @@
         @csrf
         <label>
             Mudar foto perfil:<br/>
-            <input type="file" name="op_profile_image" />
+            <input type="file" name="upload_image" />
         </label>
         <label>
             Título:<br/>

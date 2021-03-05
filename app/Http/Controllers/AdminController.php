@@ -120,6 +120,19 @@ class AdminController extends Controller
 
     }
 
+    public function delPage($idPage)
+    {
+        $user = Auth::user();
+        $page = Page::where('id', $idPage)
+            ->where('id_user', $user->id)
+            ->first();
+        if($page) {
+            $link = Link::where('id_page', $page->id)->delete();
+            $page->delete();
+        }
+        return redirect('/admin');
+    }
+
     public function pageLinks($slug)
     {
         $user = Auth::user();
@@ -135,7 +148,6 @@ class AdminController extends Controller
                 'menu' => 'links',
                 'page' => $page,
                 'links' => $links
-
             ]);
         } else {
             return redirect('/admin');

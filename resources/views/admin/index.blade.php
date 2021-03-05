@@ -23,6 +23,7 @@
                         <a href="{{url('/admin/'.$page->slug.'/links')}}">Links</a>
                         <a href="{{url('/admin/'.$page->slug.'/design')}}">Aparência</a>
                         <a href="{{url('/admin/'.$page->slug.'/stats')}}">Estatística</a>
+                        <a href="{{url('/admin/delPage/'.$page->id)}}" onclick="return confirm('Deseja realmente excluir essa página?')">Excluir</a>
                     </td>
                 </tr>
             @endforeach
