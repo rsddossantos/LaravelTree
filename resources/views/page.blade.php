@@ -55,15 +55,13 @@
         @foreach ($links as $link)
         .linkArea a:nth-child({{$link->order+1}}) {
             color: {{$link->op_text_color}};
-            background-color:{{$link->op_bg_color}}
+            background-color:{{$link->op_bg_color}};
+            box-shadow: inset 10px 8px 41px -12px rgba(0,0,0,0.7);
         }
         @endforeach
         .banner a {
             color: {{ $font_color }};
             text-decoration: none;
-        }
-        .banner a:hover {
-            color: #bb0000;
         }
     </style>
 </head>

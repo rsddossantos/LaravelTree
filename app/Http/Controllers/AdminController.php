@@ -380,15 +380,22 @@ class AdminController extends Controller
                 'op_title' => ['required', 'min:2'],
                 'op_description' => ['required', 'min:10'],
                 'slug' => ['required', 'min:2'],
-                'op_profile_image' => ['required', 'min:2'],
+                'op_profile_image' => ['image','mimes:jpeg,jpg,png,gif'],
                 'op_bg_value1' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
                 'op_bg_value2' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
                 'op_font_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i']
             ]);
+
+            if(!empty($fields['op_profile_image'])) {
+                $ext = $fields['op_profile_image']->extension();
+                $imageName = time() . '.' . $ext;
+                $fields['op_profile_image']->move(public_path('media/uploads'), $imageName);
+                $page->op_profile_image = $imageName;
+            }
+
             $page->op_title = $fields['op_title'];
             $page->op_description = $fields['op_description'];
             $page->slug = $fields['slug'];
-            $page->op_profile_image = $fields['op_profile_image'];
             $page->op_bg_value = $fields['op_bg_value1'].','.$fields['op_bg_value2'];
             $page->op_font_color = $fields['op_font_color'];
             $page->save();
