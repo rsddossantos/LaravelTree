@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Page;
 use App\Models\Link;
+use App\Models\View;
 
 class AdminController extends Controller
 {
@@ -408,8 +409,20 @@ class AdminController extends Controller
 
     public function pageStats($slug)
     {
+        $user = Auth::user();
+        $page = Page::where('slug', $slug)
+            ->where('id_user', $user->id)
+            ->first();
+        if($page) {
+            $view = View::where('id_page', $page->id)
+                ->where('view_date','>',date('Y-m-d H:i:s', strtotime('-30 days')))
+                ->orderBy('view_date', 'DESC')
+                ->get();
+        }
         return view('admin/page_stats', [
-            'menu' => 'stats'
+            'menu' => 'stats',
+            'page' => $page,
+            'views' => $view
         ]);
     }
 
