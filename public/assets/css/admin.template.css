@@ -87,6 +87,10 @@ table td {
     flex:1;
     border-right: 1px solid #CCC;
 }
+.area .leftside{
+    flex:1;
+    border-right: 1px solid #CCC;
+}
 .area .rightside {
     margin: 0 auto;
 }
@@ -176,3 +180,12 @@ h3 {
     background-color: #d66363;
     color: #FFF;
 }
+.stats {
+    background-color: #FFFFFF;
+    margin: 20px;
+    height: 500px !important;
+    width: 1000px !important;
+}
+
+
+

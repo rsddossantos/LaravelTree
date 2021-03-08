@@ -414,15 +414,23 @@ class AdminController extends Controller
             ->where('id_user', $user->id)
             ->first();
         if($page) {
-            $view = View::where('id_page', $page->id)
+            $views = View::where('id_page', $page->id)
                 ->where('view_date','>',date('Y-m-d H:i:s', strtotime('-30 days')))
                 ->orderBy('view_date', 'DESC')
                 ->get();
         }
+        foreach($views as $view) {
+            $date[] = date('d/m/y',strtotime($view->view_date));
+            $qtde[] = $view->total;
+        }
+        $date = json_encode($date);
+        $qtde = json_encode($qtde);
         return view('admin/page_stats', [
             'menu' => 'stats',
             'page' => $page,
-            'views' => $view
+            'views' => $views,
+            'date' => $date,
+            'qtde' => $qtde
         ]);
     }
 
