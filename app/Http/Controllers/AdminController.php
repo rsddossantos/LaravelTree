@@ -197,7 +197,6 @@ class AdminController extends Controller
                 $linkItem->save();
             }
         }
-
         return [];
     }
 
