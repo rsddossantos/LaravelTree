@@ -1,6 +1,6 @@
 @extends('admin.template')
 
-@section('title', 'B7Bio - '.$page->op_title.' - Links')
+@section('title', 'LaravelTree - '.$page->op_title.' - Links')
 
 @section('content')
 

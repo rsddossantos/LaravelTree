@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>B7Bio - Login</title>
+    <title>LaravelTree - Login</title>
     <link rel="stylesheet" href="{{url('assets/css/admin.login.css')}}" />
 </head>
 <body>

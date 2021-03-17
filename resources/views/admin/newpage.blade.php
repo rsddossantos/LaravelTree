@@ -1,6 +1,6 @@
 @extends('admin.template')
 
-@section('title', 'B7Bio - Nova Página')
+@section('title', 'LaravelTree - Nova Página')
 
 @section('content')
     <header>
