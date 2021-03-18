@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('adminlte::page')
 
 @section('title', 'LaravelTree - '.$page->op_title.' - Links')
 
