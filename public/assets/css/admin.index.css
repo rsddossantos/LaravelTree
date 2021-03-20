@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+.table td {
+    vertical-align: middle;
+
+}
+h2 {
+    padding-bottom: 30px;
+}

@@ -5,18 +5,24 @@
 @section('content')
 
     <div class="preheader">
-        Página: {{$page->op_title}}
+        <h2>Página: {{$page->op_title}}</h2>
     </div>
 
+
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{url('/admin/'.$page->slug.'/links')}}">Links</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('/admin/'.$page->slug.'/design')}}">Aparência</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('/admin/'.$page->slug.'/stats')}}">Estatística</a>
+        </li>
+    </ul>
     <div class="area">
         <div class="leftside">
-            <header>
-                <ul>
-                    <li @if ($menu=='links') class="active" @endif><a href="{{url('/admin/'.$page->slug.'/links')}}">Links</a></li>
-                    <li @if ($menu=='design') class="active" @endif><a href="{{url('/admin/'.$page->slug.'/design')}}">Aparência</a></li>
-                    <li @if ($menu=='stats') class="active" @endif><a href="{{url('/admin/'.$page->slug.'/stats')}}">Estatística</a></li>
-                </ul>
-            </header>
             @yield('body')
         </div>
         <div class="rightside">
@@ -24,4 +30,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('css')
+    <link rel="stylesheet" href="{{url('assets/css/admin.page.css')}}" />
 @endsection
