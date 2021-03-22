@@ -77,7 +77,7 @@ class AdminController extends Controller
         $user = Auth::user();
         $pages = Page::where('id_user', $user->id)->get();
 
-        return view('admin/index', [
+        return view('admin/pages', [
             'pages' => $pages
         ]);
     }

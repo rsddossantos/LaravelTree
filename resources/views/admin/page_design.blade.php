@@ -1,3 +1,4 @@
+
 @extends('admin.page')
 
 @section('body')
@@ -49,4 +50,4 @@
         </label>
     </form>
 
-@endsection
+@Stop

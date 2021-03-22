@@ -35,5 +35,5 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{url('assets/css/admin.index.css')}}" />
+    <link rel="stylesheet" href="{{url('assets/css/admin.pages.css')}}" />
 @endsection
