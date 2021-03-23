@@ -6,8 +6,8 @@
     <div class="area">
         <div class="leftside">
             <h2>Links</h2>
-            <a class="bigbutton" href="{{url('/admin/'.$page->slug.'/newlink')}}">Novo Link</a>
             <ul id="links">
+                <a class="btn btn-primary" href="{{url('/admin/'.$page->slug.'/newlink')}}">Novo Link</a>
                 @foreach($links as $link)
                     <li class="link--item" data-id="{{$link->id}}">
                         <div class="link--item--order">
@@ -18,8 +18,13 @@
                             <div class="link--item--href">{{$link->href}}</div>
                         </div>
                         <div class="link--item--buttons">
-                            <a href="{{url('/admin/'.$page->slug.'/editlink/'.$link->id)}}">Editar</a>
-                            <a href="{{url('/admin/'.$page->slug.'/dellink/'.$link->id)}}">Excluir</a>
+                            <a class="btn btn-outline-info"
+                               href="{{url('/admin/'.$page->slug.'/editlink/'.$link->id)}}">Editar
+                            </a>
+                            <a class="btn btn-outline-danger"
+                               href="{{url('/admin/'.$page->slug.'/dellink/'.$link->id)}}"
+                               onclick="return confirm('Deseja realmente excluir esse link?')">Excluir
+                            </a>
                         </div>
                     </li>
                 @endforeach
