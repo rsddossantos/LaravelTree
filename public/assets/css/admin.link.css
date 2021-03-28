@@ -1,9 +1,6 @@
 * {
     box-sizing: border-box;
 }
-h2 {
-    margin-bottom: 30px;
-}
 .area {
     display: flex;
 }

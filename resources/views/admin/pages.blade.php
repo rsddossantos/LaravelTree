@@ -20,11 +20,11 @@
                     <td width="85%">{{$page->op_title}} ({{$page->slug}})</td>
                     <td align="center">
                         <div align="right" class="btn-group-vertical">
-                            <a class="btn btn-primary" href="{{url('/'.$page->slug)}}" target="_blank">Abrir</a>
-                            <a class="btn btn-primary" href="{{url('/admin/'.$page->slug.'/links')}}">Links</a>
-                            <a class="btn btn-primary" href="{{url('/admin/'.$page->slug.'/design')}}">Aparência</a>
-                            <a class="btn btn-primary" href="{{url('/admin/'.$page->slug.'/stats')}}">Estatística</a>
-                            <a class="btn btn-primary" href="{{url('/admin/delPage/'.$page->id)}}" onclick="return confirm('Deseja realmente excluir essa página?')">Excluir</a>
+                            <a class="btn btn-dark" href="{{url('/'.$page->slug)}}" target="_blank">Abrir</a>
+                            <a class="btn btn-dark" href="{{url('/admin/'.$page->slug.'/links')}}">Links</a>
+                            <a class="btn btn-dark" href="{{url('/admin/'.$page->slug.'/design')}}">Aparência</a>
+                            <a class="btn btn-dark" href="{{url('/admin/'.$page->slug.'/stats')}}">Estatística</a>
+                            <a class="btn btn-dark" href="{{url('/admin/delPage/'.$page->id)}}" onclick="return confirm('Deseja realmente excluir essa página?')">Excluir</a>
                         </div>
                     </td>
                 </tr>

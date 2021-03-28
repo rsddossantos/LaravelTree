@@ -1,12 +1,14 @@
-@extends('admin.page')
+@extends('adminlte::page')
 
-@section('body')
+@section('title', 'LaravelTree - Links')
+
+@section('content')
 
     <h3>{{isset($link) ? 'Editar Link' : 'Novo Link'}}</h3>
 
     @if ($errors->any())
-        <div class="error">
-            <ul>
+        <div class="alert alert-danger" role="alert">
+            <ul style="margin: 0;">
                 @foreach($errors->all() as $error)
                     <li>{{$error}}</li>
                 @endforeach
@@ -14,39 +16,41 @@
         </div>
     @endif
 
-    <form method="POST">
+    <form class="form-horizontal" method="POST">
         @csrf
-        <label>Status:<br/>
-            <select name="status">
+        <div class="form-group">
+            <label for="select1">Status</label>
+            <select class="form-control" id="select1" name="status">
                 <option {{isset($link) ? ($link->status == '1' ? 'selected' : '') : ''}} value="1">Ativado</option>
                 <option {{isset($link) ? ($link->status == '0' ? 'selected' : '') : ''}} value="0">Desativado</option>
             </select>
-        </label>
-        <label>
-            Título do link:<br/>
-            <input type="text" name="title" value="{{$link->title ?? ''}}" />
-        </label>
-        <label>
-            URL do link:<br/>
-            <input type="text" name="href" value="{{$link->href ?? ''}}" />
-        </label>
-        <label>
-            Cor do fundo:<br/>
-            <input type="color" name="op_bg_color" value="{{$link->op_bg_color ?? '#FFFFFF'}}" />
-        </label>
-        <label>
-            Cor do texto:<br/>
-            <input type="color" name="op_text_color" value="{{$link->op_text_color ?? '#000000'}}" />
-        </label>
-        <label>Tipo de borda:<br/>
-            <select name="op_border_type">
+        </div>
+        <div class="form-group">
+            <label for="title">Título do link</label>
+            <input class="form-control" id="title" type="text" name="title" value="{{$link->title ?? ''}}" />
+        </div>
+        <div class="form-group">
+            <label for="url">URL do link:</label>
+            <input class="form-control" id="url" type="text" name="href" value="{{$link->href ?? ''}}" />
+        </div>
+        <div class="form-group">
+            <label for="bg">Cor do fundo:</label>
+            <input class="form-control" id="bg" type="color" name="op_bg_color" value="{{$link->op_bg_color ?? '#FFFFFF'}}" />
+        </div>
+        <div class="form-group">
+            <label for="tx">Cor do texto:</label>
+            <input class="form-control" id="tx" type="color" name="op_text_color" value="{{$link->op_text_color ?? '#000000'}}" />
+        </div>
+        <div class="form-group">
+            <label for="select2">Tipo de borda:</label>
+            <select class="form-control" id="select2" name="op_border_type">
                 <option {{isset($link) ? ($link->op_border_type == 'square' ? 'selected' : '') : ''}} value="square">Quadrada</option>
                 <option {{isset($link) ? ($link->op_border_type == 'rounded' ? 'selected' : '') : ''}} value="rounded">Arredondada</option>
             </select>
-        </label>
-        <label>
-            <input type="submit" value="Salvar" />
-        </label>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-dark btn-block" type="submit">Salvar</button>
+        </div>
     </form>
 
 @endsection

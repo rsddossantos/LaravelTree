@@ -72,7 +72,7 @@ class AdminController extends Controller
         return redirect('/admin');
     }
 
-    public function index()
+    public function pages()
     {
         $user = Auth::user();
         $pages = Page::where('id_user', $user->id)->get();
