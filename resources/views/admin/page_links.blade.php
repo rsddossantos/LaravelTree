@@ -7,7 +7,7 @@
         <div class="leftside">
             <h2>Links</h2>
             <ul id="links">
-                <a class="btn btn-dark" href="{{url('/admin/'.$page->slug.'/newlink')}}">Novo Link</a>
+                <a class="btn btn-dark btn-block" href="{{url('/admin/'.$page->slug.'/newlink')}}">Novo Link</a>
                 @foreach($links as $link)
                     <li class="link--item" data-id="{{$link->id}}">
                         <div class="link--item--order">

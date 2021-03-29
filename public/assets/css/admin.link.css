@@ -24,14 +24,11 @@
     list-style: none;
     margin: 20px;
 }
-.btn {
-    margin-bottom: 20px;
-    width: 100%;
-}
+
 .link--item {
     display: flex;
     background-color: #FFF;
-    margin-bottom: 20px;
+    margin-top: 20px;
     border-radius: 10px;
     padding: 10px;
     align-items: center;

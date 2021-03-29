@@ -28,6 +28,7 @@ Route::prefix('/admin')->group(function(){
 
     Route::get('/logout', [AdminController::class, 'logout']);
 
+    Route::get('/', [AdminController::class, 'pages']);
     Route::get('/pages', [AdminController::class, 'pages']);
     Route::get('/{slug}/links', [AdminController::class, 'pageLinks']);
     Route::get('/{slug}/design', [AdminController::class, 'pageDesign']);
