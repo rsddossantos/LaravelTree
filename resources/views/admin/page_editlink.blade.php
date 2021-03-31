@@ -7,7 +7,7 @@
     <h3>{{isset($link) ? 'Editar Link' : 'Novo Link'}}</h3>
 
     @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger">
             <ul style="margin: 0;">
                 @foreach($errors->all() as $error)
                     <li>{{$error}}</li>

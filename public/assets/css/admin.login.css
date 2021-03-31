@@ -2,12 +2,16 @@
     box-sizing: border-box;
 }
 body {
+    font-family: sans-serif, Arial, Monospaced;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #EEE;
     min-height: 100vh;
+    background-image:url("../images/bg-signup.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
 }
 .loginArea {
     width: 100%;
@@ -16,36 +20,32 @@ body {
     background-color: #FFF;
     border: 1px solid #CCC;
     border-radius: 5px;
+    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.5);
 }
-h1 {
-    margin: 0 0 20px 0;
+.title {
+    display:flex;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
 }
-input {
-    display: block;
-    width: 100%;
-    outline:0;
-    border: 1px solid #CCC;
-    padding: 15px 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+img {
+    width: 40px;
+    height: 40px;
+    border-bottom: 1px solid #000b16;
+    margin-right: 10px;
+    border-radius: 20px;
 }
-input[type=submit] {
-    background-color: #3f7125;
-    color: #FFF;
-    border: 0;
-    cursor: pointer;
+h2 {
+    margin: 0;
 }
+input, button{
+    margin-bottom: 20px;
+}
+
 a {
     color: #000;
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
-}
-.error {
-    background-color: #d66363;
-    color: #FFF;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
 }

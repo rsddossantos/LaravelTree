@@ -4,21 +4,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>LaravelTree - Login</title>
+    <link rel="stylesheet" href="{{url('vendor/adminlte/dist/css/adminlte.min.css')}}" />
     <link rel="stylesheet" href="{{url('assets/css/admin.login.css')}}" />
+    <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 </head>
 <body>
     <div class="loginArea">
-        <h1>Login</h1>
+        <div class="title">
+            <img src="{{url('vendor/adminlte/dist/img/tree.jpg')}}" />
+            <div><h2><b>Laravel</b>Tree</h2></div>
+        </div>
 
         @if($error)
-            <div class="error">{{$error}}</div>
+            <div class="alert alert-danger">{{$error}}</div>
         @endif
 
         <form method="POST">
             @csrf
-            <input type="email" name="email" placeholder="Digite seu e-mail" />
-            <input type="password" name="password" placeholder="Digite sua senha" />
-            <input type="submit" value="Entrar" />
+            <input class="form-control" type="email" name="email" placeholder="Digite seu e-mail" />
+            <input class="form-control" type="password" name="password" placeholder="Digite sua senha" />
+            <button class="btn btn-dark btn-lg btn-block" type="submit">Entrar</button>
 
             Ainda não tem cadastro? <a href="{{url('/admin/register')}}">Cadastre-se</a>
         </form>
