@@ -4,9 +4,7 @@
 
 @section('content')
 
-    <header>
-        <h2>Suas páginas</h2>
-    </header>
+    <h2>Suas páginas</h2>
     <table class="table table-hover">
         <thead>
             <tr>

@@ -225,9 +225,19 @@ return [
 
     'menu' => [
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'link',
+            'url' => '#',
+            'topnav' => true,
+        ],
+        [
+            'text' => 'design',
+            'url' => '#',
+            'topnav' => true,
+        ],
+        [
+            'text' => 'stats',
+            'url' => '#',
+            'topnav' => true,
         ],
         [
             'text'        => 'pages',
