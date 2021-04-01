@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 use App\Models\Page;
@@ -33,11 +34,22 @@ class AdminController extends Controller
     public function loginAction(Request $request)
     {
         $creds = $request->only('email', 'password');
+        $validator = Validator::make($creds, [
+            'email' => ['required', 'string', 'email', 'max:100'],
+            'password' => ['required', 'string', 'min:4'],
+        ]);
+        if($validator->fails()) {
+            return redirect('/admin/login')
+                ->withErrors($validator)
+                ->withInput();
+        }
         if(Auth::attempt($creds)) {
             return redirect('/admin');
         } else {
-            $request->session()->flash('error', 'Email e/ou senha não conferem.');
-            return redirect()->route('login');
+            $validator->errors()->add('password', 'E-mail e/ou senha inválidos!');
+            return redirect()->route('login')
+                ->withErrors($validator)
+                ->withInput();
         }
     }
 
@@ -50,20 +62,32 @@ class AdminController extends Controller
 
     public function registerAction(Request $request)
     {
-        $creds = $request->only('email', 'password');
-        $hasEmail = User::where('email', $creds['email'])->count();
-        if($hasEmail === 0) {
-            $newUser = new User();
-            $newUser->email = $creds['email'];
-            $newUser->password = password_hash($creds['password'], PASSWORD_DEFAULT);
-            $newUser->save();
-
-            Auth::login($newUser);
-            return redirect('/admin');
-        } else {
-            $request->session()->flash('error', 'Já existe um usuário com este e-mail.');
-            return redirect('/admin/register');
+        $creds = $request->only(
+            'name',
+            'email',
+            'password',
+            'password_confirmation'
+        );
+        $validator = Validator::make($creds, [
+            'name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
+        ]);
+        if($validator->fails()) {
+            return redirect('/admin/register')
+                ->withErrors($validator)
+                ->withInput();
         }
+
+        $newUser = new User();
+        $newUser->name = $creds['name'];
+        $newUser->email = $creds['email'];
+        $newUser->password = password_hash($creds['password'], PASSWORD_DEFAULT);
+        $newUser->save();
+
+        Auth::login($newUser);
+        return redirect('/admin');
+
     }
 
     public function logout()
@@ -433,6 +457,7 @@ class AdminController extends Controller
             'qtde' => $qtde
         ]);
     }
+
 
 
 }

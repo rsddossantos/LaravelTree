@@ -1,14 +1,13 @@
-@extends('admin.template')
+@extends('adminlte::page')
 
 @section('title', 'LaravelTree - Nova Página')
 
 @section('content')
-    <header>
-        <h2>Nova página</h2>
-    </header>
+
+    <h2>Nova página</h2>
     @if ($errors->any())
-        <div class="error">
-            <ul>
+        <div class="alert alert-danger">
+            <ul style="margin: 0;">
                 @foreach($errors->all() as $error)
                     <li>{{$error}}</li>
                 @endforeach

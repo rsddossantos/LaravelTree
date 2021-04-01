@@ -16,8 +16,12 @@
             <div><h2><b>Laravel</b>Tree</h2></div>
         </div>
 
-        @if($error)
-            <div class="alert alert-danger">{{$error}}</div>
+        @if($errors->any())
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </div>
         @endif
 
         <form method="POST">

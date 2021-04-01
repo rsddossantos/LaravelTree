@@ -26,7 +26,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/register', [AdminController::class, 'register']);
     Route::post('/register', [AdminController::class, 'registerAction']);
 
-    Route::get('/logout', [AdminController::class, 'logout']);
+    Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 
     Route::get('/', [AdminController::class, 'pages']);
     Route::get('/pages', [AdminController::class, 'pages']);
