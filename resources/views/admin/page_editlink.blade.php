@@ -4,8 +4,7 @@
 
 @section('content')
 
-    <h3>{{isset($link) ? 'Editar Link' : 'Novo Link'}}</h3>
-
+    <h2>{{isset($link) ? 'Editar Link' : 'Novo Link'}}</h2>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul style="margin: 0;">
@@ -15,7 +14,6 @@
             </ul>
         </div>
     @endif
-
     <form class="form-horizontal" method="POST">
         @csrf
         <div class="form-group">

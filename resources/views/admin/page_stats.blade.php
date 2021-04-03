@@ -4,9 +4,16 @@
 
 @section('content')
 
-    <h3>Estatística da Página</h3>
-    <div class="stats">
-        <canvas id="rel"></canvas>
+    <div class="area">
+        <div class="leftside">
+            <h2>Estatística da Página</h2>
+            <div class="stats">
+                <canvas id="rel"></canvas>
+            </div>
+        </div>
+        <div class="rightside">
+            <iframe frameborder="0" src="{{url('/'.$page->slug)}}"></iframe>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
@@ -32,4 +39,8 @@
         });
     </script>
 
+@endsection
+
+@section('css')
+    <link rel="stylesheet" href="{{url('assets/css/admin.pages.css')}}" />
 @endsection
