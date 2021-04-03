@@ -30,7 +30,7 @@
             <input class="form-control" type="email" name="email" placeholder="Digite seu e-mail" />
             <input class="form-control" type="password" name="password" placeholder="Digite sua senha" />
             <input class="form-control" type="password" name="password_confirmation" placeholder="Confirme sua senha" />
-            <button class="btn btn-dark btn-lg btn-block" type="submit">Cadastrar</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar</button>
 
         Já tem cadastro? <a href="{{url('/admin/login')}}">Faça seu Login</a>
     </form>

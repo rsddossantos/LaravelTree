@@ -7,7 +7,7 @@
         <div class="leftside">
             <h2>Links</h2>
             <ul id="links">
-                <a class="btn btn-dark btn-block" href="{{url('/admin/'.$page->slug.'/newlink')}}">Novo Link</a>
+                <a class="btn btn-primary btn-block" href="{{url('/admin/'.$page->slug.'/newlink')}}">Novo Link</a>
                 @foreach($links as $link)
                     <li class="link--item" data-id="{{$link->id}}">
                         <div class="link--item--order">
@@ -36,7 +36,12 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
+    <script type="text/javascript" src="{{url('assets/js/script_pages.js')}}"></script>
     <script>
+        menu[0].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/links')}}')
+        menu[1].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/design')}}')
+        menu[2].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/stats')}}')
+
         new Sortable(document.querySelector('#links'), {
             animation: 150,
             onEnd: async (e) => {
@@ -50,5 +55,5 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{url('assets/css/admin.link.css')}}" />
+    <link rel="stylesheet" href="{{url('assets/css/admin.pages.css')}}" />
 @endsection

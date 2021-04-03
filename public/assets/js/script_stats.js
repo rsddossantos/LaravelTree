@@ -4,9 +4,9 @@ let chart = new Chart(Grafico, {
     data: {
         labels: date,
         datasets: [{
-        label: 'Qtde. de Acessos - Últimos 30 dias',
-        data: qtde,
-        backgroundColor: "#3b5998"
-    }]
-}
+            label: 'Qtde. de Acessos - Últimos 30 dias',
+            data: qtde,
+            backgroundColor: "#3b5998"
+        }]
+    }
 });

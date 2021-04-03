@@ -1,7 +1,8 @@
+@extends('adminlte::page')
 
-@extends('admin.page')
+@section('title', 'LaravelTree - Aparência')
 
-@section('body')
+@section('content')
 
     <h3>Editar Aparência</h3>
 
@@ -50,4 +51,15 @@
         </label>
     </form>
 
-@Stop
+    <script type="text/javascript" src="{{url('assets/js/script_pages.js')}}"></script>
+    <script>
+        menu[0].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/links')}}')
+        menu[1].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/design')}}')
+        menu[2].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/stats')}}')
+    </script>
+
+@endsection
+
+@section('css')
+        <link rel="stylesheet" href="{{url('assets/css/admin.pages.css')}}" />
+@endsection

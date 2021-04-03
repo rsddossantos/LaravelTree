@@ -49,8 +49,19 @@
             </select>
         </div>
         <div class="form-group">
-            <button class="btn btn-dark btn-block" type="submit">Salvar</button>
+            <button class="btn btn-primary btn-block" type="submit">Salvar</button>
         </div>
     </form>
 
+    <script type="text/javascript" src="{{url('assets/js/script_pages.js')}}"></script>
+    <script>
+        menu[0].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/links')}}')
+        menu[1].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/design')}}')
+        menu[2].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/stats')}}')
+    </script>
+
+        @endsection
+
+@section('css')
+    <link rel="stylesheet" href="{{url('assets/css/admin.pages.css')}}" />
 @endsection

@@ -46,4 +46,8 @@
         </label>
     </form>
 
+    <script type="text/javascript" src="{{url('assets/js/script_pages.js')}}"></script>
+    <script>
+        removeMenu();
+    </script>
 @endsection

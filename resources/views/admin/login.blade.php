@@ -28,7 +28,7 @@
             @csrf
             <input class="form-control" type="email" name="email" placeholder="Digite seu e-mail" />
             <input class="form-control" type="password" name="password" placeholder="Digite sua senha" />
-            <button class="btn btn-dark btn-lg btn-block" type="submit">Entrar</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
 
             Ainda não tem cadastro? <a href="{{url('/admin/register')}}">Cadastre-se</a>
         </form>
