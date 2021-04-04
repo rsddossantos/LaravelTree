@@ -30,18 +30,6 @@
             <input class="form-control" id="slug" type="text" name="slug" value="{{$page->slug ?? ''}}" />
         </div>
         <div class="form-group">
-            <label for="op_bg_value1">Cor do fundo 1:</label>
-            <input class="form-control" id="op_bg_value1" type="color" name="op_bg_value1" value="{{$page->op_bg_value[0] ?? '#000000'}}" />
-        </div>
-        <div class="form-group">
-            <label for="op_bg_value2">Cor do fundo 2:</label>
-            <input class="form-control" id="op_bg_value2" type="color" name="op_bg_value2" value="{{$page->op_bg_value[1] ?? '#FFFFFF'}}" />
-        </div>
-        <div class="form-group">
-            <label for="op_font_color">Cor da Fonte:</label>
-            <input class="form-control" id="op_font_color" type="color" name="op_font_color" value="{{$page->op_font_color ?? '#000000'}}" />
-        </div>
-        <div class="form-group">
             <button class="btn btn-primary btn-block" type="submit">Salvar</button>
         </div>
     </form>

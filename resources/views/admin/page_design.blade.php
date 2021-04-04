@@ -19,8 +19,11 @@
             <form class="form-horizontal" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="op_profile_image">Mudar foto perfil:</label><br>
-                    <input id="op_profile_image" type="file" name="op_profile_image" />
+                    <label>Mudar foto perfil:</label>
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="customFile">Escolher arquivo</label>
+                        <input type="file" class="custom-file-input" id="customFile" name="op_profile_image">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="op_title">Título:</label>
@@ -56,11 +59,12 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="{{url('vendor/jquery/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/js/script_pages.js')}}"></script>
     <script>
-        menu[0].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/links')}}')
-        menu[1].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/design')}}')
-        menu[2].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/stats')}}')
+        menu[0].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/links')}}');
+        menu[1].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/design')}}');
+        menu[2].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/stats')}}');
     </script>
 
 @endsection

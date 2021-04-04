@@ -127,9 +127,6 @@ class AdminController extends Controller
             'op_title' => ['required', 'min:2'],
             'op_description' => ['required', 'min:10'],
             'slug' => ['required', 'min:2', 'unique:pages'],
-            'op_bg_value1' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
-            'op_bg_value2' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
-            'op_font_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i']
         ]);
         $page->id_user = $user->id;
         $page->op_bg_type = 'color';
@@ -137,8 +134,7 @@ class AdminController extends Controller
         $page->op_description = $fields['op_description'];
         $page->slug = $fields['slug'];
         $page->op_profile_image = 'default.png';
-        $page->op_bg_value = $fields['op_bg_value1'].','.$fields['op_bg_value2'];
-        $page->op_font_color = $fields['op_font_color'];
+        $page->op_bg_value = '#000000,#FFFFFF';
         $page->save();
 
         return redirect('/admin/'.$page->slug.'/design');
@@ -458,6 +454,66 @@ class AdminController extends Controller
         ]);
     }
 
+    public function editUser()
+    {
+        $user = Auth::user();
+        return view('admin/user', [
+            'user' => $user
+        ]);
+    }
 
+    public function editUserAction(Request $request)
+    {
+        $user = Auth::user();
+        $data = $request->only([
+            'name',
+            'email',
+            'password',
+            'password_confirmation'
+        ]);
+        $validator = Validator::make([
+            'name' => $data['name'],
+            'email' => $data['email']
+        ], [
+            'name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:100']
+        ]);
+        $user->name = $data['name'];
+        if($user->email != $data['email']) {
+            $hasEmail = User::where('email', $data['email'])->get();
+            if(count($hasEmail) === 0) {
+                $user->email = $data['email'];
+            } else {
+                $validator->errors()->add('email', __('validation.unique', [
+                    'attribute' => 'email'
+                ]));
+            }
+        }
+        if($user->password != $data['password']) {
+            if (strlen($data['password']) >= 4) {
+                if ($data['password'] === $data['password_confirmation']) {
+                    $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
+                } else {
+                    $validator->errors()->add('password', __('validation.confirmed', [
+                        'attribute' => 'password',
+                    ]));
+                }
+            } else {
+                $validator->errors()->add('password', __('validation.min.string', [
+                    'attribute' => 'password',
+                    'min' => 4
+                ]));
+            }
+        }
+        if(count($validator->errors()) > 0) {
+            return redirect()->route('user')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $user->save();
+        return redirect()->route('user')
+            ->with('warning', 'Informações alteradas com sucesso!');
+
+    }
 
 }
