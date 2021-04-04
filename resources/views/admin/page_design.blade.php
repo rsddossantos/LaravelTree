@@ -65,6 +65,11 @@
         menu[0].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/links')}}');
         menu[1].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/design')}}');
         menu[2].firstElementChild.setAttribute('href','{{url('/admin/'.$page->slug.'/stats')}}');
+
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
     </script>
 
 @endsection

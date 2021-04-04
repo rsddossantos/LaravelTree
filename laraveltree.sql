@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 04-Abr-2021 às 04:23
+-- Tempo de geração: 04-Abr-2021 às 23:30
 -- Versão do servidor: 10.4.10-MariaDB
 -- versão do PHP: 7.3.12
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `op_text_color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `op_border_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `links`
@@ -69,7 +69,10 @@ INSERT INTO `links` (`id`, `id_page`, `status`, `order`, `title`, `href`, `op_bg
 (5, 2, 1, 1, 'Twitter', 'https://twitter.com/mallandrosergio', '#00aced', '#FFFFFF', 'rounded'),
 (16, 7, 1, 1, 'Instagram', 'https://www.instagram.com/acdc/?hl=pt-br', '#3f729b', '#ffffff', 'rounded'),
 (15, 7, 1, 0, 'Youtube', 'https://www.youtube.com/user/acdc', '#ec4141', '#ffffff', 'rounded'),
-(17, 7, 1, 2, 'Facebook', 'https://www.facebook.com/acdc', '#3b5998', '#ffffff', 'rounded');
+(17, 7, 1, 2, 'Facebook', 'https://www.facebook.com/acdc', '#3b5998', '#ffffff', 'rounded'),
+(23, 11, 1, 2, 'Instagram', 'http://terra.com.br', '#3f729b', '#ffffff', 'square'),
+(22, 11, 1, 1, 'Facebook', 'https://www.facebook.com/zezim', '#252ad0', '#ffffff', 'square'),
+(21, 11, 1, 0, 'Youtube', 'http://youtube.com', '#ff0000', '#ffffff', 'square');
 
 -- --------------------------------------------------------
 
@@ -111,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `op_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `op_fb_pixel` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `pages`
@@ -120,7 +123,8 @@ CREATE TABLE IF NOT EXISTS `pages` (
 INSERT INTO `pages` (`id`, `id_user`, `slug`, `op_font_color`, `op_bg_type`, `op_bg_value`, `op_profile_image`, `op_title`, `op_description`, `op_fb_pixel`) VALUES
 (1, 1, 'rodrigo-santos', '#ffffff', 'color', '#b1d5f0,#4169e1', '1615047072.jpg', 'Rodrigo Santos', '\"Tamo ae na atividade\"', '12345'),
 (2, 1, 'sergio-malandro', '#fafafa', 'color', '#9b5f65,#e3877d', 'sergio-malandro.png', 'Sérgio Malandro', 'Haaaaaaa! Yeah Yeah!', '12345'),
-(7, 1, 'acdc', '#ffffff', 'color', '#cc1e1e,#641111', '1615045723.jpg', 'ACDC', 'This is rock´n roll baby', NULL);
+(7, 1, 'acdc', '#ffffff', 'color', '#cc1e1e,#641111', '1615045723.jpg', 'ACDC', 'This is rock´n roll baby', NULL),
+(11, 1, 'zezim', '#f5f5f5', 'color', '#f00a0a,#e5f226', '1617578723.png', 'Zezim', 'O pai tá ON', NULL);
 
 -- --------------------------------------------------------
 
@@ -142,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(1, 'Rodrigo Santos', 'rsddossantos@gmail.com', '$2y$10$2vxgcdMLp2Veuy9/KCA5guKeq.jhBeOGqjch3N3PHYGDgQa5lpI9W'),
+(1, 'Rodrigo Dias Santos', 'rsddossantos@gmail.com', '$2y$10$2vxgcdMLp2Veuy9/KCA5guKeq.jhBeOGqjch3N3PHYGDgQa5lpI9W'),
 (2, 'Sergio Malandro', 'salcifufu@gmail.com', '$2y$10$J9ZnAC.mSCls4foMoVsCp.iGFyoqW8Oxh006RPo5.a1feQ7oA3MKi'),
 (3, 'Abilio  Diniz', 'abilio.diniz@grupopao.com.br', '$2y$10$J9ZnAC.mSCls4foMoVsCp.iGFyoqW8Oxh006RPo5.a1feQ7oA3MKi');
 
@@ -159,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `views` (
   `view_date` date NOT NULL,
   `total` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `views`
@@ -205,7 +209,12 @@ INSERT INTO `views` (`id`, `id_page`, `view_date`, `total`) VALUES
 (37, 7, '2021-03-06', 68),
 (38, 1, '2021-03-06', 13),
 (39, 2, '2021-03-06', 3),
-(40, 1, '2021-04-04', 3);
+(40, 1, '2021-04-04', 47),
+(41, 7, '2021-04-04', 19),
+(42, 8, '2021-04-04', 7),
+(43, 9, '2021-04-04', 1),
+(44, 10, '2021-04-04', 14),
+(45, 11, '2021-04-04', 9);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

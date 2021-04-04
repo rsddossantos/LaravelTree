@@ -6,6 +6,7 @@ return [
     'blog'                          => 'Blog',
     'pages'                         => 'Páginas',
     'new pages'                     => 'Nova Página',
+    'exit'                          => 'Sair',
     'link'                          => 'Link',
     'design'                        => 'Aparência',
     'stats'                         => 'Estatística',

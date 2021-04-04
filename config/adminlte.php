@@ -257,6 +257,11 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+        'text' => 'exit',
+        'url'  => 'admin/logout',
+        'icon' => 'fas fa-fw fa-power-off',
+    ],
     ],
 
     /*
