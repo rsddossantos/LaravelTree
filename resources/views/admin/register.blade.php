@@ -31,7 +31,7 @@
         <div class="input-group">
             <input class="form-control pass" type="password" name="password" placeholder="Digite sua senha">
             <span class="input-group-btn">
-                <button class="btn btn-default eye" id="eye">
+                <button class="btn btn-default eye" id="eye" disabled="disabled">
                     <img id="eyeImg" width="25" height="25" src="{{url('assets/images/close.png')}}" />
                 </button>
             </span>

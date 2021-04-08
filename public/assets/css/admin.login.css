@@ -56,8 +56,10 @@ a:hover {
 .eye {
     background-color: #FFFFFF;
     border: none;
+    cursor: pointer !important;
 }
 .eye:hover {
+    cursor: pointer !important;
     background-color: #FFFFFF;
 }
 .pass {
