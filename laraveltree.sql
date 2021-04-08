@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 04-Abr-2021 às 23:30
+-- Tempo de geração: 08-Abr-2021 às 02:35
 -- Versão do servidor: 10.4.10-MariaDB
 -- versão do PHP: 7.3.12
 
@@ -62,17 +62,17 @@ CREATE TABLE IF NOT EXISTS `links` (
 --
 
 INSERT INTO `links` (`id`, `id_page`, `status`, `order`, `title`, `href`, `op_bg_color`, `op_text_color`, `op_border_type`) VALUES
-(9, 1, 1, 2, 'Youtube', 'https://www.youtube.com/channel/UCrbs5jyRKL62WJfpBqFatZw', '#bb0000', '#ffffff', 'rounded'),
-(2, 1, 1, 1, 'Facebook', 'https://www.facebook.com/rodrigo.diassantos.9/', '#3b5998', '#ffffff', 'rounded'),
-(3, 1, 1, 0, 'LinkedIn', 'https://www.linkedin.com/in/rodrigo-santos-345737188/', '#007bb6', '#FFFFFF', 'rounded'),
-(4, 2, 1, 0, 'Youtube', 'https://www.youtube.com/channel/UC8MqlgcaHPAK5RAB9YYVA4w', '#bb0000', '#ffffff', 'rounded'),
-(5, 2, 1, 1, 'Twitter', 'https://twitter.com/mallandrosergio', '#00aced', '#FFFFFF', 'rounded'),
-(16, 7, 1, 1, 'Instagram', 'https://www.instagram.com/acdc/?hl=pt-br', '#3f729b', '#ffffff', 'rounded'),
-(15, 7, 1, 0, 'Youtube', 'https://www.youtube.com/user/acdc', '#ec4141', '#ffffff', 'rounded'),
-(17, 7, 1, 2, 'Facebook', 'https://www.facebook.com/acdc', '#3b5998', '#ffffff', 'rounded'),
+(9, 1, 1, 1, 'Youtube', 'https://www.youtube.com/channel/UCrbs5jyRKL62WJfpBqFatZw', '#bb0000', '#ffffff', 'rounded'),
+(2, 1, 1, 0, 'Facebook', 'https://www.facebook.com/rodrigo.diassantos.9/', '#3b5998', '#ffffff', 'rounded'),
+(3, 1, 1, 2, 'LinkedIn', 'https://www.linkedin.com/in/rodrigo-santos-345737188/', '#007bb6', '#FFFFFF', 'rounded'),
+(4, 2, 1, 1, 'Youtube', 'https://www.youtube.com/channel/UC8MqlgcaHPAK5RAB9YYVA4w', '#bb0000', '#ffffff', 'rounded'),
+(5, 2, 1, 0, 'Twitter', 'https://twitter.com/mallandrosergio', '#00aced', '#FFFFFF', 'rounded'),
+(16, 7, 1, 2, 'Instagram', 'https://www.instagram.com/acdc/?hl=pt-br', '#3f729b', '#ffffff', 'rounded'),
+(15, 7, 1, 1, 'Youtube', 'https://www.youtube.com/user/acdc', '#ec4141', '#ffffff', 'rounded'),
+(17, 7, 1, 0, 'Facebook', 'https://www.facebook.com/acdc', '#3b5998', '#ffffff', 'rounded'),
 (23, 11, 1, 2, 'Instagram', 'http://terra.com.br', '#3f729b', '#ffffff', 'square'),
-(22, 11, 1, 1, 'Facebook', 'https://www.facebook.com/zezim', '#252ad0', '#ffffff', 'square'),
-(21, 11, 1, 0, 'Youtube', 'http://youtube.com', '#ff0000', '#ffffff', 'square');
+(22, 11, 1, 0, 'Facebook', 'https://www.facebook.com/zezim', '#252ad0', '#ffffff', 'square'),
+(21, 11, 1, 1, 'Youtube', 'http://youtube.com', '#ff0000', '#ffffff', 'square');
 
 -- --------------------------------------------------------
 
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `users`
@@ -148,7 +148,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
 (1, 'Rodrigo Dias Santos', 'rsddossantos@gmail.com', '$2y$10$2vxgcdMLp2Veuy9/KCA5guKeq.jhBeOGqjch3N3PHYGDgQa5lpI9W'),
 (2, 'Sergio Malandro', 'salcifufu@gmail.com', '$2y$10$J9ZnAC.mSCls4foMoVsCp.iGFyoqW8Oxh006RPo5.a1feQ7oA3MKi'),
-(3, 'Abilio  Diniz', 'abilio.diniz@grupopao.com.br', '$2y$10$J9ZnAC.mSCls4foMoVsCp.iGFyoqW8Oxh006RPo5.a1feQ7oA3MKi');
+(3, 'Abilio  Diniz', 'abilio.diniz@grupopao.com.br', '$2y$10$J9ZnAC.mSCls4foMoVsCp.iGFyoqW8Oxh006RPo5.a1feQ7oA3MKi'),
+(5, 'teste', 'teste@teste.com', '$2y$10$A2EJi76iCBTicNEcrvYbKOJU4Yvj9hXXZYEAQPU8Qmgkhkr/yKQd6'),
+(6, 'teste2', 'teste2@teste2.com', '$2y$10$YiAbKGy0kRGfdkfUBwc.gOvnpxKtEkPb0QUadWpfv9hHeF8SJsYCW');
 
 -- --------------------------------------------------------
 
@@ -163,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `views` (
   `view_date` date NOT NULL,
   `total` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `views`
@@ -214,7 +216,12 @@ INSERT INTO `views` (`id`, `id_page`, `view_date`, `total`) VALUES
 (42, 8, '2021-04-04', 7),
 (43, 9, '2021-04-04', 1),
 (44, 10, '2021-04-04', 14),
-(45, 11, '2021-04-04', 9);
+(45, 11, '2021-04-04', 10),
+(46, 7, '2021-04-07', 10),
+(47, 7, '2021-04-08', 52),
+(48, 1, '2021-04-08', 26),
+(49, 11, '2021-04-08', 13),
+(50, 2, '2021-04-08', 13);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
