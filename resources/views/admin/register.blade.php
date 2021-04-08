@@ -11,10 +11,10 @@
 </head>
 <body>
 <div class="loginArea">
-        <div class="title">
-            <img src="{{url('vendor/adminlte/dist/img/tree.jpg')}}" />
-            <div><h2><b>Laravel</b>Tree</h2></div>
-        </div>
+    <div class="title">
+        <img id="imgLogo" src="{{url('vendor/adminlte/dist/img/tree.jpg')}}" />
+        <div><h2><b>Laravel</b>Tree</h2></div>
+    </div>
 
     @if($errors->any())
         <div class="alert alert-danger">
@@ -26,14 +26,34 @@
 
     <form method="POST">
         @csrf
-            <input class="form-control" type="text" name="name" placeholder="Digite seu nome" />
-            <input class="form-control" type="email" name="email" placeholder="Digite seu e-mail" />
-            <input class="form-control" type="password" name="password" placeholder="Digite sua senha" />
-            <input class="form-control" type="password" name="password_confirmation" placeholder="Confirme sua senha" />
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar</button>
+        <input class="form-control" type="text" name="name" placeholder="Digite seu nome" />
+        <input class="form-control" type="email" name="email" placeholder="Digite seu e-mail" />
+        <div class="input-group">
+            <input class="form-control pass" type="password" name="password" placeholder="Digite sua senha">
+            <span class="input-group-btn">
+                <button class="btn btn-default eye" id="eye">
+                    <img id="eyeImg" width="25" height="25" src="{{url('assets/images/close.png')}}" />
+                </button>
+            </span>
+        </div>
+        <input class="form-control pass" type="password" name="password_confirmation" placeholder="Confirme sua senha" />
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar</button>
 
         Já tem cadastro? <a href="{{url('/admin/login')}}">Faça seu Login</a>
     </form>
 </div>
+<script type="text/javascript">
+
+    $('#eyeImg').mouseover(function(){
+        $(this).attr("src", "{{url('assets/images/open.png')}}");
+        $('.pass').attr('type','text');
+    });
+
+    $('#eyeImg').mouseout(function(){
+        $(this).attr("src", "{{url('assets/images/close.png')}}");
+        $('.pass').attr('type','password');
+    });
+
+</script>
 </body>
 </html>

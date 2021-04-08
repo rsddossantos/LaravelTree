@@ -46,7 +46,9 @@
             animation: 150,
             onEnd: async (e) => {
                 let id = e.item.getAttribute('data-id');
-                let link = `{{url('/admin/linkorder/${id}/${e.newIndex}')}}`;
+                // Foi necessário diminuir 1 do indice pois o PHP espera index iniciado por zero
+                // mas nessa versão está iniciando com 1.
+                let link = `{{url('/admin/linkorder/${id}/${e.newIndex-1}')}}`;
                 await fetch(link);
                 window.location.href = window.location.href;
             }

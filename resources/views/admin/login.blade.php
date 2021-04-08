@@ -12,7 +12,7 @@
 <body>
     <div class="loginArea">
         <div class="title">
-            <img src="{{url('vendor/adminlte/dist/img/tree.jpg')}}" />
+            <img id="imgLogo" src="{{url('vendor/adminlte/dist/img/tree.jpg')}}" />
             <div><h2><b>Laravel</b>Tree</h2></div>
         </div>
 
