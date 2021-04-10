@@ -26,12 +26,32 @@
 
         <form method="POST">
             @csrf
-            <input class="form-control" type="email" name="email" placeholder="Digite seu e-mail" />
-            <input class="form-control" type="password" name="password" placeholder="Digite sua senha" />
+            <input class="form-control" type="email" name="email" placeholder="Digite seu e-mail" spellcheck="false" />
+            <div class="input-group">
+                <input class="form-control pass" type="password" name="password" placeholder="Digite sua senha" spellcheck="false">
+                <span class="input-group-btn">
+                <button class="btn btn-default eye" id="eye" disabled="disabled">
+                    <img id="eyeImg" width="25" height="25" src="{{url('assets/images/close.png')}}" />
+                </button>
+            </span>
+            </div>
             <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
 
             Ainda não tem cadastro? <a href="{{url('/admin/register')}}">Cadastre-se</a>
         </form>
     </div>
+    <script>
+
+        $('#eyeImg').mouseover(function(){
+            $(this).attr("src", "{{url('assets/images/open.png')}}");
+            $('.pass').attr('type','text');
+        });
+
+        $('#eyeImg').mouseout(function(){
+            $(this).attr("src", "{{url('assets/images/close.png')}}");
+            $('.pass').attr('type','password');
+        });
+
+    </script>
 </body>
 </html>
